@@ -27,6 +27,6 @@ urlpatterns = [
     # path('password-reset/', auth_views.PasswordResetView.as_view(template_name='app/password_reset.html')),
     path('registration/', views.CustomerRegistrationView.as_view(),name="customerregistration"),
 path('checkout/', views.checkout, name='checkout'),
-    path('addcomment/<int:pk>', views.addcomment,name='addcomment'),
+    path('product/addcomment/<int:id>', views.addcomment,name='addcomment'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

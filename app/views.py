@@ -5,8 +5,8 @@ from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.views import View
 from app import urls
-from .models import Comment, CommentForm, customer,productDetail,cart,orderPlaced
-from .forms import CustomerRegistrationForm, CustomerProfileForm
+from .models import Comment, customer,productDetail,cart,orderPlaced
+from .forms import CustomerRegistrationForm, CustomerProfileForm,CommentForm
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
@@ -129,17 +129,20 @@ def addcomment(request, id):
     url = request.META.get('HTTP_REFERER')
     if request.method == "POST":
         form = CommentForm(request.POST)
-        if form.is_valid():
+        if not form.is_valid():
             data = Comment()
-            data.name = form.cleaned_data['name']
             data.subject = form.cleaned_data['subject']
-            data.comment = form.cleaned_data['comment']
+            data.content = form.cleaned_data['comment']
+            # data.rating = form.cleaned_data['rate']
+            data.rating = 3
             data.ip = request.META.get('REMOTE_ADDR')
-            data.product_id = id
+            data.product = productDetail.objects.get(id=id)
+
             current_user = request.user
-            data.user_id = current_user.id
+            data.user = current_user
             data.save()
             messages.success(request, "Your review has been sent. Thank you for your request.")
             return HttpResponseRedirect(url)
-
+        else:
+            print('heheh')
     return HttpResponseRedirect(url)

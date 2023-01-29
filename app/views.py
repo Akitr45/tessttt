@@ -132,9 +132,9 @@ def addcomment(request, id):
         if not form.is_valid():
             data = Comment()
             data.subject = form.cleaned_data['subject']
-            data.content = form.cleaned_data['comment']
-            # data.rating = form.cleaned_data['rate']
-            data.rating = 3
+            data.comment= form.cleaned_data['comment']
+            data.rating = form.cleaned_data['rate']
+
             data.ip = request.META.get('REMOTE_ADDR')
             data.product = productDetail.objects.get(id=id)
 

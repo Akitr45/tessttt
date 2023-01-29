@@ -32,7 +32,7 @@ class CustomerProfileForm(forms.ModelForm):
 class CommentForm(forms.ModelForm):
     subject = forms.CharField(max_length=255)
     comment = forms.CharField(widget=forms.Textarea)
-    rating = forms.IntegerField()
+    rate = forms.IntegerField()
     class Meta:
         model = Comment
         fields = ["subject","comment"]

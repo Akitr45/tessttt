@@ -67,21 +67,5 @@ class Comment(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
     update_at = models.DateTimeField(auto_now=True)
 
-# def __str__(self):
-#  return self.subject
-
-# class CommentForm(models.Model):
-#     subject = models.CharField(max_length=255,null=True)
-#     comment = models.TextField(null=True)
-#     rating = models.IntegerField(null=True)
-
-
-# class Comment(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     product = models.ForeignKey(productDetail, on_delete=models.CASCADE)
-#     subject = models.TextField(default="No content")
-#     content = models.TextField(default="No content")
-#     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], null=True)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     def __str__(self):
-#         return str(self.product)
+def __str__(self):
+    return self.subject
